@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Python Module - PyO3 user guide</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="PyO3 user guide">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li class="affix"><a href="./overview.html">Overview</a></li><li class="affix"><a href="./getting_started.html">Getting Started</a></li><li><a href="./conversions.html"><strong>1.</strong> Type Conversions</a></li><li><a href="./exception.html"><strong>2.</strong> Python Exception</a></li><li><a href="./module.html" class="active"><strong>3.</strong> Python Module</a></li><li><a href="./function.html"><strong>4.</strong> Python Function</a></li><li><a href="./class.html"><strong>5.</strong> Python Class</a></li><li><a href="./parallelism.html"><strong>6.</strong> Parallelism</a></li><li><a href="./distribution.html"><strong>7.</strong> Distribution</a></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush"></i>
+                    </div>
+
+                    <h1 class="menu-title">PyO3 user guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="./module.html#python-module" id="python-module"><h1>Python Module</h1></a>
+<p>Python module generation is powered by unstable <a href="https://doc.rust-lang.org/book/first-edition/procedural-macros.html">Procedural Macros</a> feature, so you need to turn on <code>proc_macro</code> feature:</p>
+<pre><pre class="playpen"><code class="language-rust">#![feature(proc_macro)]
+
+extern crate pyo3;
+# fn main() {}
+</code></pre></pre>
+<p>You need to change your <code>crate-type</code> to <code>cdylib</code> to produce a Python compatible library:</p>
+<pre><code class="language-toml">[lib]
+name = &quot;rust2py&quot;
+crate-type = [&quot;cdylib&quot;]
+
+[dependencies]
+pyo3 = { version = &quot;0.2&quot;, features = [&quot;extension-module&quot;] }
+</code></pre>
+<p>Now you can write your module, for example</p>
+<pre><pre class="playpen"><code class="language-rust">#![feature(proc_macro)]
+
+extern crate pyo3;
+use pyo3::{py, PyResult, Python, PyModule};
+
+// add bindings to the generated python module
+// N.B: names: &quot;librust2py&quot; must be the name of the `.so` or `.pyd` file
+/// This module is implemented in Rust.
+#[py::modinit(rust2py)]
+fn init_mod(py: Python, m: &amp;PyModule) -&gt; PyResult&lt;()&gt; {
+
+    // pyo3 aware function. All of our python interface could be declared in a separate module.
+    // Note that the `#[pyfn()]` annotation automatically converts the arguments from
+    // Python objects to Rust values; and the Rust return value back into a Python object.
+    #[pyfn(m, &quot;sum_as_string&quot;)]
+    fn sum_as_string_py(_: Python, a:i64, b:i64) -&gt; PyResult&lt;String&gt; {
+       let out = sum_as_string(a, b);
+       Ok(out)
+    }
+
+    Ok(())
+}
+
+// logic implemented as a normal rust function
+fn sum_as_string(a:i64, b:i64) -&gt; String {
+    format!(&quot;{}&quot;, a + b).to_string()
+}
+
+# fn main() {}
+</code></pre></pre>
+<p>The <code>modinit</code> procedural macro attribute takes care of exporting the initialization function of your module to Python. It takes one argument as the name of your module, it must be the name of the <code>.so</code> or <code>.pyd</code> file.</p>
+<p>The <a href="https://doc.rust-lang.org/stable/book/first-edition/comments.html">Rust doc comments</a> of the module initialization function will be applied automatically as the Python doc string of your module.</p>
+<pre><code class="language-python">import rust2py
+
+print(rust2py.__doc__)
+</code></pre>
+<p>Which means that the above Python code will print <code>This module is implemented in Rust.</code>.</p>
+<blockquote>
+<p>On macOS, you will need to rename the output from <code>*.dylib</code> to <code>*.so</code>.</p>
+<p>On Windows, you will need to rename the output from <code>*.dll</code> to <code>*.pyd</code>.</p>
+</blockquote>
+<p>For <code>setup.py</code> integration, You can use <a href="https://github.com/PyO3/setuptools-rust">setuptools-rust</a>,
+learn more about it in <a href="./distribution.html">Distribution</a>.</p>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="./exception.html" class="mobile-nav-chapters previous">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="./function.html" class="mobile-nav-chapters next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="./exception.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="./function.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+    </body>
+</html>

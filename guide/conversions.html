@@ -1,0 +1,224 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Type Conversions - PyO3 user guide</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="PyO3 user guide">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li class="affix"><a href="./overview.html">Overview</a></li><li class="affix"><a href="./getting_started.html">Getting Started</a></li><li><a href="./conversions.html" class="active"><strong>1.</strong> Type Conversions</a></li><li><a href="./exception.html"><strong>2.</strong> Python Exception</a></li><li><a href="./module.html"><strong>3.</strong> Python Module</a></li><li><a href="./function.html"><strong>4.</strong> Python Function</a></li><li><a href="./class.html"><strong>5.</strong> Python Class</a></li><li><a href="./parallelism.html"><strong>6.</strong> Parallelism</a></li><li><a href="./distribution.html"><strong>7.</strong> Distribution</a></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush"></i>
+                    </div>
+
+                    <h1 class="menu-title">PyO3 user guide</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="./conversions.html#type-conversions" id="type-conversions"><h1>Type Conversions</h1></a>
+<p><code>PyO3</code> provides some handy traits to convert between Python types and Rust types.</p>
+<a class="header" href="./conversions.html#topyobject-and-intopyobject-trait" id="topyobject-and-intopyobject-trait"><h2><code>ToPyObject</code> and <code>IntoPyObject</code> trait</h2></a>
+<p><a href="https://pyo3.github.io/pyo3/pyo3/trait.ToPyObject.html"><code>ToPyObject</code></a> trait is a conversion trait that allows various objects to be converted into <a href="https://pyo3.github.io/PyO3/pyo3/struct.PyObject.html"><code>PyObject</code></a>. <a href="https://pyo3.github.io/pyo3/pyo3/trait.IntoPyObject.html"><code>IntoPyObject</code></a> serves the same purpose except it consumes <code>self</code>.</p>
+<a class="header" href="./conversions.html#intopytuple-trait" id="intopytuple-trait"><h2><code>IntoPyTuple</code> trait</h2></a>
+<p><a href="https://pyo3.github.io/pyo3/pyo3/trait.IntoPyTuple.html"><code>IntoPyTuple</code></a> trait is a conversion trait that allows various objects to be converted into <a href="https://pyo3.github.io/PyO3/pyo3/struct.PyTuple.html"><code>PyTuple</code></a> object.</p>
+<p>For example, <a href="https://pyo3.github.io/pyo3/pyo3/trait.IntoPyTuple.html"><code>IntoPyTuple</code></a> trait is implemented for <code>()</code> so that you can convert it into a empty <a href="https://pyo3.github.io/PyO3/pyo3/struct.PyTuple.html"><code>PyTuple</code></a></p>
+<pre><pre class="playpen"><code class="language-rust">extern crate pyo3;
+
+use pyo3::{Python, IntoPyTuple};
+
+fn main() {
+    let gil = Python::acquire_gil();
+    let py = gil.python();
+    let py_tuple = ().into_tuple(py);
+}
+</code></pre></pre>
+<a class="header" href="./conversions.html#frompyobject-and-reffrompyobject-trait" id="frompyobject-and-reffrompyobject-trait"><h2><code>FromPyObject</code> and <code>RefFromPyObject</code> trait</h2></a>
+<a class="header" href="./conversions.html#args-and-kwargs-for-python-object-call" id="args-and-kwargs-for-python-object-call"><h2><code>*args</code> and <code>**kwargs</code> for python object call</h2></a>
+<p>There are several way how to pass positional and keyword arguments to python object call.
+<a href="https://pyo3.github.io/pyo3/pyo3/trait.ObjectProtocol.html"><code>ObjectProtocol</code></a> trait
+provides two methods:</p>
+<ul>
+<li><code>call</code> - call callable python object.</li>
+<li><code>call_method</code> - call specific method on the object.</li>
+</ul>
+<p>Both methods accept <code>args</code> and <code>kwargs</code> arguments. <code>args</code> argument is generate over
+<a href="https://pyo3.github.io/pyo3/pyo3/trait.IntoPyTuple.html"><code>IntoPyTuple</code></a> trait. So args could be <code>PyTuple</code> instance or
+rust tuple with up to 10 elements. Or <code>NoArgs</code> object which represents empty tuple object.</p>
+<pre><code class="language-rust ignore">extern crate pyo3;
+
+use pyo3::prelude::*;
+
+fn main() {
+    let gil = Python::acquire_gil();
+    let py = gil.python();
+    
+    let obj = SomeObject::new();
+    
+    // call object without empty arguments
+    obj.call(NoArgs, NoArg);
+    
+    // call object with PyTuple
+    let args = PyTuple::new(py, &amp;[arg1, arg2, arg3]);
+    obj.call(args, NoArg);
+
+    // pass arguments as rust tuple
+    let args = (arg1, arg2, arg3);
+    obj.call(args, NoArg);
+}
+</code></pre>
+<p><code>kwargs</code> argument is generate over
+<a href="https://pyo3.github.io/pyo3/pyo3/trait.IntoPyDictPointer.html"><code>IntoPyDictPointer</code></a> trait. <code>HashMap</code> or <code>BTreeMap</code> could be used as
+keyword arguments. rust tuple with up to 10 elements where each element is tuple with size 2
+could be used as kwargs as well. Or <code>NoArgs</code> object can be used to indicate that
+no keywords areguments are provided.</p>
+<pre><code class="language-rust ignore">extern crate pyo3;
+use pyo3::prelude::*;
+
+fn main() {
+    let gil = Python::acquire_gil();
+    let py = gil.python();
+    
+    let obj = SomeObject::new();
+    
+    // call object with PyDict
+    let kwargs = PyDict::new(py);
+    kwargs.set_item(key, value);
+    obj.call(NoArg, kwargs);
+
+    // pass arguments as rust tuple
+    let kwargs = ((key1, val1), (key2, val2), (key3, val3));
+    obj.call(args, kwargs);
+
+    // pass arguments as HashMap
+    let mut kwargs = HashMap::&lt;i32, i32&gt;::new();
+    kwargs.insert(1, 1);
+    obj.call(args, kwargs);
+}
+</code></pre>
+<p>TODO</p>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="./getting_started.html" class="mobile-nav-chapters previous">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="./exception.html" class="mobile-nav-chapters next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="./getting_started.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="./exception.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+    </body>
+</html>

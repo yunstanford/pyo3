@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `PyNumberMethods` struct in crate `pyo3`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, PyNumberMethods">
+
+    <title>pyo3::ffi::PyNumberMethods - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc struct">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'>Struct PyNumberMethods</p><div class="block items"><ul><li><a href="#fields">Fields</a></li><li><a href="#implementations">Trait Implementations</a></li></ul></div><p class='location'><a href='../index.html'>pyo3</a>::<wbr><a href='index.html'>ffi</a></p><script>window.sidebarCurrent = {name: 'PyNumberMethods', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>pyo3</a>::<wbr><a href='index.html'>ffi</a>::<wbr><a class="struct" href=''>PyNumberMethods</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../src/pyo3/ffi3/object.rs.html#219-256' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'><div class="docblock attributes">#[repr(C)]
+</div>pub struct PyNumberMethods {
+    pub nb_add: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_subtract: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_multiply: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_remainder: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_divmod: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_power: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.ternaryfunc.html" title="type pyo3::ffi::ternaryfunc">ternaryfunc</a>&gt;,
+    pub nb_negative: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.unaryfunc.html" title="type pyo3::ffi::unaryfunc">unaryfunc</a>&gt;,
+    pub nb_positive: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.unaryfunc.html" title="type pyo3::ffi::unaryfunc">unaryfunc</a>&gt;,
+    pub nb_absolute: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.unaryfunc.html" title="type pyo3::ffi::unaryfunc">unaryfunc</a>&gt;,
+    pub nb_bool: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.inquiry.html" title="type pyo3::ffi::inquiry">inquiry</a>&gt;,
+    pub nb_invert: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.unaryfunc.html" title="type pyo3::ffi::unaryfunc">unaryfunc</a>&gt;,
+    pub nb_lshift: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_rshift: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_and: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_xor: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_or: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_int: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.unaryfunc.html" title="type pyo3::ffi::unaryfunc">unaryfunc</a>&gt;,
+    pub nb_reserved: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*mut </a><a class="enum" href="https://doc.rust-lang.org/nightly/std/os/raw/enum.c_void.html" title="enum std::os::raw::c_void">c_void</a>,
+    pub nb_float: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.unaryfunc.html" title="type pyo3::ffi::unaryfunc">unaryfunc</a>&gt;,
+    pub nb_inplace_add: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_inplace_subtract: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_inplace_multiply: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_inplace_remainder: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_inplace_power: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.ternaryfunc.html" title="type pyo3::ffi::ternaryfunc">ternaryfunc</a>&gt;,
+    pub nb_inplace_lshift: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_inplace_rshift: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_inplace_and: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_inplace_xor: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_inplace_or: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_floor_divide: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_true_divide: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_inplace_floor_divide: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_inplace_true_divide: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_index: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.unaryfunc.html" title="type pyo3::ffi::unaryfunc">unaryfunc</a>&gt;,
+    pub nb_matrix_multiply: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+    pub nb_inplace_matrix_multiply: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;,
+}</pre><h2 id='fields' class='fields small-section-header'>
+                       Fields<a href='#fields' class='anchor'></a></h2><span id="structfield.nb_add" class="structfield small-section-header">
+                           <a href="#structfield.nb_add" class="anchor field"></a>
+                           <span id="nb_add.v" class='invisible'>
+                           <code>nb_add: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_subtract" class="structfield small-section-header">
+                           <a href="#structfield.nb_subtract" class="anchor field"></a>
+                           <span id="nb_subtract.v" class='invisible'>
+                           <code>nb_subtract: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_multiply" class="structfield small-section-header">
+                           <a href="#structfield.nb_multiply" class="anchor field"></a>
+                           <span id="nb_multiply.v" class='invisible'>
+                           <code>nb_multiply: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_remainder" class="structfield small-section-header">
+                           <a href="#structfield.nb_remainder" class="anchor field"></a>
+                           <span id="nb_remainder.v" class='invisible'>
+                           <code>nb_remainder: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_divmod" class="structfield small-section-header">
+                           <a href="#structfield.nb_divmod" class="anchor field"></a>
+                           <span id="nb_divmod.v" class='invisible'>
+                           <code>nb_divmod: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_power" class="structfield small-section-header">
+                           <a href="#structfield.nb_power" class="anchor field"></a>
+                           <span id="nb_power.v" class='invisible'>
+                           <code>nb_power: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.ternaryfunc.html" title="type pyo3::ffi::ternaryfunc">ternaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_negative" class="structfield small-section-header">
+                           <a href="#structfield.nb_negative" class="anchor field"></a>
+                           <span id="nb_negative.v" class='invisible'>
+                           <code>nb_negative: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.unaryfunc.html" title="type pyo3::ffi::unaryfunc">unaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_positive" class="structfield small-section-header">
+                           <a href="#structfield.nb_positive" class="anchor field"></a>
+                           <span id="nb_positive.v" class='invisible'>
+                           <code>nb_positive: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.unaryfunc.html" title="type pyo3::ffi::unaryfunc">unaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_absolute" class="structfield small-section-header">
+                           <a href="#structfield.nb_absolute" class="anchor field"></a>
+                           <span id="nb_absolute.v" class='invisible'>
+                           <code>nb_absolute: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.unaryfunc.html" title="type pyo3::ffi::unaryfunc">unaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_bool" class="structfield small-section-header">
+                           <a href="#structfield.nb_bool" class="anchor field"></a>
+                           <span id="nb_bool.v" class='invisible'>
+                           <code>nb_bool: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.inquiry.html" title="type pyo3::ffi::inquiry">inquiry</a>&gt;</code>
+                           </span></span><span id="structfield.nb_invert" class="structfield small-section-header">
+                           <a href="#structfield.nb_invert" class="anchor field"></a>
+                           <span id="nb_invert.v" class='invisible'>
+                           <code>nb_invert: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.unaryfunc.html" title="type pyo3::ffi::unaryfunc">unaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_lshift" class="structfield small-section-header">
+                           <a href="#structfield.nb_lshift" class="anchor field"></a>
+                           <span id="nb_lshift.v" class='invisible'>
+                           <code>nb_lshift: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_rshift" class="structfield small-section-header">
+                           <a href="#structfield.nb_rshift" class="anchor field"></a>
+                           <span id="nb_rshift.v" class='invisible'>
+                           <code>nb_rshift: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_and" class="structfield small-section-header">
+                           <a href="#structfield.nb_and" class="anchor field"></a>
+                           <span id="nb_and.v" class='invisible'>
+                           <code>nb_and: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_xor" class="structfield small-section-header">
+                           <a href="#structfield.nb_xor" class="anchor field"></a>
+                           <span id="nb_xor.v" class='invisible'>
+                           <code>nb_xor: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_or" class="structfield small-section-header">
+                           <a href="#structfield.nb_or" class="anchor field"></a>
+                           <span id="nb_or.v" class='invisible'>
+                           <code>nb_or: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_int" class="structfield small-section-header">
+                           <a href="#structfield.nb_int" class="anchor field"></a>
+                           <span id="nb_int.v" class='invisible'>
+                           <code>nb_int: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.unaryfunc.html" title="type pyo3::ffi::unaryfunc">unaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_reserved" class="structfield small-section-header">
+                           <a href="#structfield.nb_reserved" class="anchor field"></a>
+                           <span id="nb_reserved.v" class='invisible'>
+                           <code>nb_reserved: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.pointer.html">*mut </a><a class="enum" href="https://doc.rust-lang.org/nightly/std/os/raw/enum.c_void.html" title="enum std::os::raw::c_void">c_void</a></code>
+                           </span></span><span id="structfield.nb_float" class="structfield small-section-header">
+                           <a href="#structfield.nb_float" class="anchor field"></a>
+                           <span id="nb_float.v" class='invisible'>
+                           <code>nb_float: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.unaryfunc.html" title="type pyo3::ffi::unaryfunc">unaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_inplace_add" class="structfield small-section-header">
+                           <a href="#structfield.nb_inplace_add" class="anchor field"></a>
+                           <span id="nb_inplace_add.v" class='invisible'>
+                           <code>nb_inplace_add: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_inplace_subtract" class="structfield small-section-header">
+                           <a href="#structfield.nb_inplace_subtract" class="anchor field"></a>
+                           <span id="nb_inplace_subtract.v" class='invisible'>
+                           <code>nb_inplace_subtract: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_inplace_multiply" class="structfield small-section-header">
+                           <a href="#structfield.nb_inplace_multiply" class="anchor field"></a>
+                           <span id="nb_inplace_multiply.v" class='invisible'>
+                           <code>nb_inplace_multiply: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_inplace_remainder" class="structfield small-section-header">
+                           <a href="#structfield.nb_inplace_remainder" class="anchor field"></a>
+                           <span id="nb_inplace_remainder.v" class='invisible'>
+                           <code>nb_inplace_remainder: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_inplace_power" class="structfield small-section-header">
+                           <a href="#structfield.nb_inplace_power" class="anchor field"></a>
+                           <span id="nb_inplace_power.v" class='invisible'>
+                           <code>nb_inplace_power: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.ternaryfunc.html" title="type pyo3::ffi::ternaryfunc">ternaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_inplace_lshift" class="structfield small-section-header">
+                           <a href="#structfield.nb_inplace_lshift" class="anchor field"></a>
+                           <span id="nb_inplace_lshift.v" class='invisible'>
+                           <code>nb_inplace_lshift: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_inplace_rshift" class="structfield small-section-header">
+                           <a href="#structfield.nb_inplace_rshift" class="anchor field"></a>
+                           <span id="nb_inplace_rshift.v" class='invisible'>
+                           <code>nb_inplace_rshift: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_inplace_and" class="structfield small-section-header">
+                           <a href="#structfield.nb_inplace_and" class="anchor field"></a>
+                           <span id="nb_inplace_and.v" class='invisible'>
+                           <code>nb_inplace_and: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_inplace_xor" class="structfield small-section-header">
+                           <a href="#structfield.nb_inplace_xor" class="anchor field"></a>
+                           <span id="nb_inplace_xor.v" class='invisible'>
+                           <code>nb_inplace_xor: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_inplace_or" class="structfield small-section-header">
+                           <a href="#structfield.nb_inplace_or" class="anchor field"></a>
+                           <span id="nb_inplace_or.v" class='invisible'>
+                           <code>nb_inplace_or: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_floor_divide" class="structfield small-section-header">
+                           <a href="#structfield.nb_floor_divide" class="anchor field"></a>
+                           <span id="nb_floor_divide.v" class='invisible'>
+                           <code>nb_floor_divide: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_true_divide" class="structfield small-section-header">
+                           <a href="#structfield.nb_true_divide" class="anchor field"></a>
+                           <span id="nb_true_divide.v" class='invisible'>
+                           <code>nb_true_divide: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_inplace_floor_divide" class="structfield small-section-header">
+                           <a href="#structfield.nb_inplace_floor_divide" class="anchor field"></a>
+                           <span id="nb_inplace_floor_divide.v" class='invisible'>
+                           <code>nb_inplace_floor_divide: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_inplace_true_divide" class="structfield small-section-header">
+                           <a href="#structfield.nb_inplace_true_divide" class="anchor field"></a>
+                           <span id="nb_inplace_true_divide.v" class='invisible'>
+                           <code>nb_inplace_true_divide: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_index" class="structfield small-section-header">
+                           <a href="#structfield.nb_index" class="anchor field"></a>
+                           <span id="nb_index.v" class='invisible'>
+                           <code>nb_index: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.unaryfunc.html" title="type pyo3::ffi::unaryfunc">unaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_matrix_multiply" class="structfield small-section-header">
+                           <a href="#structfield.nb_matrix_multiply" class="anchor field"></a>
+                           <span id="nb_matrix_multiply.v" class='invisible'>
+                           <code>nb_matrix_multiply: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span><span id="structfield.nb_inplace_matrix_multiply" class="structfield small-section-header">
+                           <a href="#structfield.nb_inplace_matrix_multiply" class="anchor field"></a>
+                           <span id="nb_inplace_matrix_multiply.v" class='invisible'>
+                           <code>nb_inplace_matrix_multiply: <a class="enum" href="https://doc.rust-lang.org/nightly/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="type" href="../../pyo3/ffi/type.binaryfunc.html" title="type pyo3::ffi::binaryfunc">binaryfunc</a>&gt;</code>
+                           </span></span>
+            <h2 id='implementations' class='small-section-header'>
+              Trait Implementations<a href='#implementations' class='anchor'></a>
+            </h2>
+        <h3 id='impl-Copy' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html" title="trait core::marker::Copy">Copy</a> for <a class="struct" href="../../pyo3/ffi/struct.PyNumberMethods.html" title="struct pyo3::ffi::PyNumberMethods">PyNumberMethods</a></code><a href='#impl-Copy' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/pyo3/ffi3/object.rs.html#218' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 id='impl-Clone' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../../pyo3/ffi/struct.PyNumberMethods.html" title="struct pyo3::ffi::PyNumberMethods">PyNumberMethods</a></code><a href='#impl-Clone' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/pyo3/ffi3/object.rs.html#218' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class="struct" href="../../pyo3/ffi/struct.PyNumberMethods.html" title="struct pyo3::ffi::PyNumberMethods">PyNumberMethods</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/pyo3/ffi3/object.rs.html#218' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
+</div><h4 id='method.clone_from' class="method"><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.reference.html">&amp;</a>Self)</code></span><span class='out-of-band'><div class='ghost'></div><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div><a class='srclink' href='https://doc.rust-lang.org/nightly/src/core/clone.rs.html#112-114' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Performs copy-assignment from <code>source</code>. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from">Read more</a></p>
+</div></div><h3 id='impl-Default' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html" title="trait core::default::Default">Default</a> for <a class="struct" href="../../pyo3/ffi/struct.PyNumberMethods.html" title="struct pyo3::ffi::PyNumberMethods">PyNumberMethods</a></code><a href='#impl-Default' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/pyo3/ffi3/object.rs.html#258-260' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.default' class="method"><span id='default.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default' class='fnname'>default</a>() -&gt; Self</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../../src/pyo3/ffi3/object.rs.html#259' title='goto source code'>[src]</a></span></h4>
+<div class='docblock'><p>Returns the &quot;default value&quot; for a type. <a href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html#tymethod.default">Read more</a></p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "pyo3";
+    </script>
+    <script src="../../main.js"></script>
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>
